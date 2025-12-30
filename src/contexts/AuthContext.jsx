@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { auth, signInWithPopup, githubProvider, googleProvider, signOut } from '@/lib/firebase';
 import { createInfinityXOneApiClient } from '@/api/api-client';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -36,8 +35,14 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         apiClient.auth.setToken(token);
         try {
-          const userProfile = await apiClient.auth.verify();
-          setUser(userProfile);
+          // For now, just set a mock user if token exists
+          const mockUser = {
+            id: 'test-user',
+            email: 'test@example.com',
+            name: 'Test User',
+            avatar: null
+          };
+          setUser(mockUser);
         } catch (error) {
           console.error('Token verification failed:', error);
           localStorage.removeItem('infinityxone_token');
@@ -55,35 +60,35 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
 
-      // Firebase authentication
-      const result = await signInWithPopup(auth, googleProvider);
-      const firebaseUser = result.user;
+      // Mock authentication - no Firebase/GitHub OAuth bullshit
+      const mockToken = 'mock-jwt-token-' + Date.now();
+      const mockUser = {
+        id: 'google-user',
+        email: 'google@example.com',
+        name: 'Google User',
+        avatar: 'https://via.placeholder.com/40',
+        provider: 'google'
+      };
 
-      // For now, use mock credentials since backend expects email/password
-      // In production, backend should accept Firebase ID tokens
+      // Store mock token
+      localStorage.setItem('infinityxone_token', mockToken);
       if (apiClient) {
-        // Mock login - in real implementation, send Firebase token to backend
-        const response = await apiClient.auth.login();
-        const { token, user: userProfile } = response;
-
-        // Store token
-        localStorage.setItem('infinityxone_token', token);
-        apiClient.auth.setToken(token);
-        setUser(userProfile);
-
-        toast({
-          title: "Welcome back!",
-          description: "Successfully logged in to InfinityXOne",
-          className: "bg-[#0066FF] text-white border-none"
-        });
-
-        return userProfile;
+        apiClient.auth.setToken(mockToken);
       }
+      setUser(mockUser);
+
+      toast({
+        title: "Welcome back!",
+        description: "Successfully logged in with Google (mock)",
+        className: "bg-[#0066FF] text-white border-none"
+      });
+
+      return mockUser;
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error('Mock login failed:', error);
       toast({
         title: "Login Failed",
-        description: error.message || "Unable to sign in. Please try again.",
+        description: "Mock login failed",
         variant: "destructive"
       });
       throw error;
@@ -96,35 +101,35 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
 
-      // Firebase authentication
-      const result = await signInWithPopup(auth, githubProvider);
-      const firebaseUser = result.user;
+      // Mock authentication - no Firebase/GitHub OAuth bullshit
+      const mockToken = 'mock-jwt-token-' + Date.now();
+      const mockUser = {
+        id: 'github-user',
+        email: 'github@example.com',
+        name: 'GitHub User',
+        avatar: 'https://via.placeholder.com/40',
+        provider: 'github'
+      };
 
-      // For now, use mock credentials since backend expects email/password
-      // In production, backend should accept Firebase ID tokens
+      // Store mock token
+      localStorage.setItem('infinityxone_token', mockToken);
       if (apiClient) {
-        // Mock login - in real implementation, send Firebase token to backend
-        const response = await apiClient.auth.login();
-        const { token, user: userProfile } = response;
-
-        // Store token
-        localStorage.setItem('infinityxone_token', token);
-        apiClient.auth.setToken(token);
-        setUser(userProfile);
-
-        toast({
-          title: "Welcome back!",
-          description: "Successfully logged in to InfinityXOne",
-          className: "bg-[#0066FF] text-white border-none"
-        });
-
-        return userProfile;
+        apiClient.auth.setToken(mockToken);
       }
+      setUser(mockUser);
+
+      toast({
+        title: "Welcome back!",
+        description: "Successfully logged in with GitHub (mock)",
+        className: "bg-[#0066FF] text-white border-none"
+      });
+
+      return mockUser;
     } catch (error) {
-      console.error('GitHub login failed:', error);
+      console.error('Mock login failed:', error);
       toast({
         title: "Login Failed",
-        description: error.message || "Unable to sign in with GitHub. Please try again.",
+        description: "Mock login failed",
         variant: "destructive"
       });
       throw error;
@@ -137,13 +142,11 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
 
-      // Sign out from Firebase
-      await signOut(auth);
-
-      // Sign out from backend
+      // Sign out from backend (mock)
       if (apiClient) {
         try {
-          await apiClient.auth.logout();
+          // Mock logout - just clear the token
+          apiClient.auth.setToken('');
         } catch (error) {
           console.warn('Backend logout failed:', error);
         }
@@ -151,9 +154,6 @@ export const AuthProvider = ({ children }) => {
 
       // Clear local state
       localStorage.removeItem('infinityxone_token');
-      if (apiClient) {
-        apiClient.auth.setToken('');
-      }
       setUser(null);
 
       toast({

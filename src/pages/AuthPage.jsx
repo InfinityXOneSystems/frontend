@@ -43,7 +43,7 @@ const AuthPage = () => {
                 <Fingerprint size={32} />
               </div>
               <h1 className="text-3xl font-light mb-2 tracking-tight">Welcome Back</h1>
-              <p className="text-white/40 text-sm">Or welcome early to the future.</p>
+              <p className="text-white/40 text-sm">Mock authentication for testing - no OAuth bullshit.</p>
             </div>
 
             <div className="space-y-4">
@@ -57,7 +57,7 @@ const AuthPage = () => {
                 ) : (
                   <Chrome className="mr-3 w-5 h-5" />
                 )}
-                Sign in with Google
+                Mock Google Login
               </Button>
 
               <Button
@@ -70,7 +70,16 @@ const AuthPage = () => {
                 ) : (
                   <Github className="mr-3 w-5 h-5" />
                 )}
-                Sign in with GitHub
+                Mock GitHub Login
+              </Button>
+
+              {/* Skip Auth Button for Testing */}
+              <Button
+                onClick={() => navigate('/admin')}
+                className="w-full h-12 bg-[#0066FF]/20 text-[#0066FF] hover:bg-[#0066FF]/30 border border-[#0066FF]/30 font-medium tracking-wide text-sm rounded-xl transition-all hover:scale-[1.02]"
+              >
+                <Fingerprint className="mr-3 w-4 h-4" />
+                Skip Auth (Testing)
               </Button>
             </div>
 
