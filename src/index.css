@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Theme Variables */
+    --background: 255 255 255; /* White (Light Mode) */
+    --foreground: 0 0 0; /* Black (Light Mode) */
+    --electric-blue: 0 102 255; /* #0066FF */
+    
+    /* Panel colors for light mode */
+    --panel-bg: 255 255 255;
+    --panel-border: 0 102 255;
+
+    /* Light gray for readability in dark mode */
+    --light-gray-text: 180 180 180; /* A distinct light gray for better contrast */
+  }
+
+  .dark {
+    --background: 0 0 0; /* Black (Dark Mode) */
+    --foreground: 255 255 255; /* White (Dark Mode) */
+    --panel-bg: 0 0 0;
+
+    /* In dark mode, we can make the foreground text itself a lighter gray 
+       or use --light-gray-text for specific elements. 
+       Let's keep foreground white for primary text and use --light-gray-text for secondary.
+    */
+  }
+
+  body {
+    @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] overflow-x-hidden transition-colors duration-300;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+
+  /* Sophisticated Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-[rgb(var(--background))];
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, transparent, #0066FF, transparent);
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(0, 102, 255, 0.8), 0 0 40px rgba(0, 102, 255, 0.4);
+  }
+
+  .text-glow-cyber {
+    color: #e0f2fe; /* Very light cyan/white base */
+    text-shadow: 
+      0 0 5px rgba(34, 211, 238, 0.8),   /* Cyan glow inner */
+      0 0 15px rgba(6, 182, 212, 0.6),   /* Cyan glow mid */
+      0 0 30px rgba(0, 102, 255, 0.6),   /* Blue glow outer */
+      0 0 50px rgba(0, 102, 255, 0.3);   /* Blue haze */
+  }
+  
+  .text-quantum {
+    background: linear-gradient(to right, rgb(var(--foreground)), #0066FF, #00C2FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
+  }
+
+  /* Holographic Panels - Replaces Boxy Cards */
+  .glass-panel {
+    @apply backdrop-blur-md border transition-all duration-300;
+    /* Light Mode Default */
+    background-color: rgba(var(--panel-bg), 0.7);
+    border-color: rgba(var(--panel-border), 0.2);
+    box-shadow: 0 4px 20px -5px rgba(0, 102, 255, 0.1);
+  }
+  
+  /* Dark Mode Overrides for Panels handled by CSS vars or .dark specificity */
+  .dark .glass-panel {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 30px -5px rgba(0, 102, 255, 0.1), inset 0 0 20px rgba(0, 102, 255, 0.05);
+  }
+
+  .glass-panel:hover {
+    border-color: rgba(var(--panel-border), 0.5);
+    box-shadow: 0 0 50px -5px rgba(0, 102, 255, 0.25);
+  }
+  
+  .dark .glass-panel:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .glass-float {
+    @apply backdrop-blur-2xl border border-[#0066FF]/30;
+    background-color: rgba(var(--panel-bg), 0.6);
+  }
+
+  /* Animation Utilities */
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  .animate-scanline {
+    animation: scanline 8s linear infinite;
+  }
+}
