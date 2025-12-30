@@ -14,15 +14,34 @@ export const api = {
   baseUrl: BASE_URL,
   
   sendMessage: async (message) => {
-    // Simulation for frontend-only demo
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          role: 'assistant',
-          content: `[SIMULATION] Vision Cortex has received: "${message}". \n\nLive neural processing requires backend connection.`
-        });
-      }, 1000);
-    });
+    try {
+      const response = await fetch(`${BASE_URL}/api/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return {
+        role: 'assistant',
+        content: data.content || 'Response received',
+      };
+    } catch (error) {
+      console.warn('API Request failed, falling back to simulation:', error);
+      // Fallback to simulation
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            role: 'assistant',
+            content: `[SIMULATION] Vision Cortex has received: "${message}". \n\nLive neural processing requires backend connection.`
+          });
+        }, 1000);
+      });
+    }
   },
 
   // Generic fetch wrapper for future use
