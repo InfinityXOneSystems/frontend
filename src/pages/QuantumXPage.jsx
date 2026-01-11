@@ -83,7 +83,7 @@ const QuantumXPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Built-in Trust</h2>
               <div className="space-y-8">
                  <p className="text-white/70 text-lg font-light leading-relaxed">
-                   Quantum X doesn't just blindly write code. It understands security, how to handle lots of users, and the best way to build things so they last.
+                   Quantum X doesn&apos;t just blindly write code. It understands security, how to handle lots of users, and the best way to build things so they last.
                  </p>
                  
                  <div className="grid grid-cols-2 gap-6">

@@ -18,12 +18,12 @@ const TechnologyPage = () => {
              </div>
              
              <h1 className="text-5xl md:text-7xl font-bold mb-12 tracking-tight">
-               We don't just sell tools. <br />
+               We don&apos;t just sell tools. <br />
                We deliver <span className="text-[#0066FF]">results.</span>
              </h1>
              
              <p className="text-xl text-white/70 font-light max-w-3xl mx-auto leading-relaxed">
-               Most tech companies sell you a shovel and wish you luck. We build the autonomous machines that dig the foundation while you sleep. Infinity X isn't just about finishing tasks; it's about constantly improving your business goals on its own.
+               Most tech companies sell you a shovel and wish you luck. We build the autonomous machines that dig the foundation while you sleep. Infinity X isn&apos;t just about finishing tasks; it&apos;s about constantly improving your business goals on its own.
              </p>
            </motion.div>
         </div>

@@ -81,7 +81,7 @@ const DashboardPage = () => {
           {/* Header */}
           <div className="mb-10">
             <h1 className="text-3xl font-bold text-white mb-2">Welcome back, {user?.name}</h1>
-            <p className="text-white/50">Here's an overview of your autonomous systems.</p>
+            <p className="text-white/50">Here&apos;s an overview of your autonomous systems.</p>
           </div>
 
           {/* Stats Grid */}

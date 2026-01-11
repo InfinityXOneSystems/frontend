@@ -34,7 +34,7 @@ const FuturePage = () => {
            </h1>
            
            <p className="text-xl text-white/70 font-light mb-16 max-w-2xl mx-auto">
-             We aren't just building software. We're creating the foundation for a world where technology handles the work, so you can focus on the vision.
+             We aren&apos;t just building software. We&apos;re creating the foundation for a world where technology handles the work, so you can focus on the vision.
            </p>
 
            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-20 text-left">

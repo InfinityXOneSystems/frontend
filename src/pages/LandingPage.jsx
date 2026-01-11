@@ -36,7 +36,7 @@ const LandingPage = () => {
     },
     {
       title: "Predictive Analytics",
-      desc: "AI models that don't just analyze the past, but accurately forecast market vectors.",
+      desc: "AI models that don&apos;t just analyze the past, but accurately forecast market vectors.",
       icon: <BarChart className="text-[#0066FF]" size={24} />
     },
     {
@@ -89,7 +89,7 @@ const LandingPage = () => {
     <>
       <Helmet>
         <title>Infinity X AI | Intelligence Data Network</title>
-        <meta name="description" content="The world's most advanced decentralized intelligence network." />
+        <meta name="description" content="The world&apos;s most advanced decentralized intelligence network." />
       </Helmet>
       
       <div className="relative w-full overflow-hidden">
@@ -267,7 +267,7 @@ const LandingPage = () => {
                   <div className="mb-6 text-[#0066FF]">
                     {[1,2,3,4,5].map(star => <span key={star} className="text-lg">★</span>)}
                   </div>
-                  <p className="text-lg italic text-[rgb(var(--light-gray-text))] mb-8">"{t.quote}"</p>
+                  <p className="text-lg italic text-[rgb(var(--light-gray-text))] mb-8">&quot;{t.quote}&quot;</p>
                   <div>
                     <div className="font-bold text-[rgb(var(--foreground))]">{t.author}</div>
                     <div className="text-xs uppercase tracking-wider text-[#0066FF]">{t.role}</div>

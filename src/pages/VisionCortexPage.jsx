@@ -77,7 +77,7 @@ const VisionCortexPage = () => {
                 <div className="space-y-2">
                   <div className="text-sm font-bold text-[#0066FF]">VISION CORTEX</div>
                   <p className="text-white/80 leading-relaxed font-light">
-                    Hi there. I'm ready to help you solve problems, write code, or plan your next strategic move. What's on your mind today?
+                    Hi there. I&apos;m ready to help you solve problems, write code, or plan your next strategic move. What&apos;s on your mind today?
                   </p>
                 </div>
               </motion.div>
